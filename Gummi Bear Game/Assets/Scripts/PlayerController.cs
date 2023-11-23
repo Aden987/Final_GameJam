@@ -11,17 +11,26 @@ public class PlayerController : MonoBehaviour
     GameObject spawnPoint;
     public GameObject player;
     bool gumStuck = false;
+    bool crouch = false;
+    float upSpeed;
+    CameraFollow cam;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cam = FindObjectOfType<CameraFollow>();
         spawnPoint = GameObject.Find("SpawnPoint");
+        cam.targets.Add(gameObject.transform);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isOnGround)
+        {
+            upSpeed = 500f;
+        }
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
@@ -30,6 +39,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E) && isOnGround)
         {
+            SpawnNewBear();
+        }
+        if (Input.GetKeyDown(KeyCode.C) && isOnGround)
+        {
+            crouch = true;
             SpawnNewBear();
         }
     }
@@ -64,6 +78,15 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
+        if (collision.gameObject.tag == "bounce" && isOnGround == false)
+        {
+            upSpeed += 100f;
+            if (upSpeed >= 700f)
+            {
+                upSpeed = 700f;
+            }
+            rb.AddForce(new Vector3(0, upSpeed, 0));
+        }
         
     }
 
@@ -80,7 +103,13 @@ public class PlayerController : MonoBehaviour
     private void SpawnNewBear()
     {
         Instantiate(player, spawnPoint.transform.position,Quaternion.identity);
+        if (crouch == true)
+        {
+            gameObject.transform.localScale = new Vector3 (1f, 0.5f, 1f);
+            gameObject.tag = "bounce";
+        }
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        cam.targets.Remove(gameObject.transform);
         gameObject.GetComponent<PlayerController>().enabled = false;
     }
 }
