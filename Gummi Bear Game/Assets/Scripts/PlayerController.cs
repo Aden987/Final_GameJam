@@ -8,11 +8,14 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     Rigidbody rb;
     public bool isOnGround = true;
+    GameObject spawnPoint;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        spawnPoint = GameObject.Find("SpawnPoint");
     }
 
     // Update is called once per frame
@@ -25,6 +28,11 @@ public class PlayerController : MonoBehaviour
             //transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime, Space.World);
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isOnGround = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            SpawnNewBear();
         }
     }
 
@@ -58,5 +66,12 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
+    }
+
+    private void SpawnNewBear()
+    {
+        Instantiate(player, spawnPoint.transform.position,Quaternion.identity);
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        gameObject.GetComponent<PlayerController>().enabled = false;
     }
 }
