@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     GameObject spawnPoint;
     public GameObject player;
+    bool gumStuck = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +24,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            //jumpTime = jumpSpeed;
-            //transform.position += Vector3.up * jumpSpeed * Time.deltaTime;
-            //transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime, Space.World);
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isOnGround = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && isOnGround)
         {
             SpawnNewBear();
         }
@@ -62,9 +60,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "Player")
         {
             isOnGround = true;
+        }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "gum" && gumStuck == false)
+        {
+            gumStuck = true;
+            //Debug.Log("gum");
+            SpawnNewBear();
         }
     }
 
