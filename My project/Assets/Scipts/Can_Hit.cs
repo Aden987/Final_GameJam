@@ -40,6 +40,20 @@ public class Can_Hit : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        //scans through array to find the same enemy
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (Targets[i] == other.gameObject)
+            {
+                Targets[i] = null;
+            }
+        }
+        
+    }
+
     public void Attack(int Damage)
     {
         for (int i = 0; i < 10; i++)

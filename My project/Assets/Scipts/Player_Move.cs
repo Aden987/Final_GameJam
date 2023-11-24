@@ -11,6 +11,9 @@ public class Player_Move : MonoBehaviour
     public float Speed = 6f;
     public float turnSmoothtime = 0.1f;
     float smoothVelocity;
+   
+
+    public bool Grounded;
     void Start()
     {
         
@@ -21,6 +24,8 @@ public class Player_Move : MonoBehaviour
     {
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
+
+      
 
         Vector3 direction = new Vector3 (horizontal, 0f, vertical).normalized;
 
@@ -33,6 +38,11 @@ public class Player_Move : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move (moveDirection.normalized*Speed*Time.deltaTime);
            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+          //Jump
         }
     }
 }
