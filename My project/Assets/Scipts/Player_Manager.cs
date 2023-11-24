@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player_Manager : MonoBehaviour
 {
+ 
     // Start is called before the first frame update
     public float AttackTmr = 0;
     public int HP = 50;
@@ -13,6 +15,8 @@ public class Player_Manager : MonoBehaviour
     public int HeavyDamage = 20;
     public Animator PlayerAnimator;
     public GameObject Skeleton;
+
+    
 
     
     void Start()
@@ -77,4 +81,6 @@ public class Player_Manager : MonoBehaviour
         Ranger.GetComponent<Can_Hit>().Attack(HeavyDamage);
         PlayerAnimator.SetTrigger("Heavy");
     }
+
+    
 }

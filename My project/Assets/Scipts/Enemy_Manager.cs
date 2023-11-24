@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Enemy_Manager : MonoBehaviour
@@ -9,12 +10,15 @@ public class Enemy_Manager : MonoBehaviour
     private int hp = 20;
     public int Power;
     public bool Biden = false;
+    public NavMeshAgent Me;
+    public GameObject Gate;
     void Start()
     {
         if (Biden == true)
         {
             hp = 100;
         }
+        EXIT();
     }
 
     // Update is called once per frame
@@ -69,6 +73,11 @@ public class Enemy_Manager : MonoBehaviour
     public void RunAway()
     {
         ///NAVMESH SHIT
+    }
+
+    private void EXIT()
+    {
+        Me.SetDestination(Gate.transform.position);
     }
 
 
