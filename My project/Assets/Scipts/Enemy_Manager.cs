@@ -7,6 +7,7 @@ public class Enemy_Manager : MonoBehaviour
     // Start is called before the first frame update
     private int hp = 20;
     public int Power;
+    
     void Start()
     {
         
@@ -22,5 +23,26 @@ public class Enemy_Manager : MonoBehaviour
     {
         hp -= Damage;
         Debug.Log("I took damage");
+
+        if (hp <= 0)
+        {
+            Die();
+        }
     }
+
+    public void Die()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (Can_Hit.Targets[i] == this.gameObject)
+            {
+                Can_Hit.Targets[i] = null;
+            }
+        }
+
+        Destroy(this.gameObject);
+        
+    }
+
+
 }

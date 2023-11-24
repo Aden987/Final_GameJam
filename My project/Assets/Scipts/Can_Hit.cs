@@ -5,7 +5,7 @@ using UnityEngine;
 public class Can_Hit : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject[] Targets = new GameObject[10];
+    public static GameObject[] Targets = new GameObject[10];
     void Start()
     {
         
