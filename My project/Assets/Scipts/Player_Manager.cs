@@ -16,6 +16,7 @@ public class Player_Manager : MonoBehaviour
     public Animator PlayerAnimator;
     public GameObject Skeleton;
 
+    public GameObject Body;
     
 
     
@@ -61,8 +62,17 @@ public class Player_Manager : MonoBehaviour
                 AttackTmr = 1.5f;
             }
         }
+/*
+        if (Mathf.Approximately(Body.GetComponent<Rigidbody>().velocity.y, 0))
+        {
+            PlayerAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            PlayerAnimator.SetBool("isRunning", false);
+        }*/
 
-       
+
     }
 
     public void GetHit(int HitDmg)

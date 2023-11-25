@@ -25,6 +25,8 @@ public class Player_Move : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
+   
+        
       
 
         Vector3 direction = new Vector3 (horizontal, 0f, vertical).normalized;
@@ -36,13 +38,12 @@ public class Player_Move : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f,angle, 0f);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move (moveDirection.normalized*Speed*Time.deltaTime);
-           
+            
+          
+
+            controller.Move(moveDirection.normalized * Speed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-          //Jump
-        }
+     
     }
 }
