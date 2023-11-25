@@ -50,4 +50,14 @@ public class MenuNavigation : MonoBehaviour
         Application.Quit();
     }
 
+    public void FightOne()
+    {
+        SceneManager.LoadScene("Fight1");
+    }
+
+    public void FightTwo()
+    {
+        SceneManager.LoadScene("Fight2");
+    }
+
 }
