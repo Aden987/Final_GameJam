@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
+  - gum
+  - bounce
+  - respawn
   layers:
   - Default
   - TransparentFX
