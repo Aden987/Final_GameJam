@@ -35,4 +35,19 @@ public class MenuNavigation : MonoBehaviour
         SceneManager.LoadScene("PuzzleLevel1");
     }
 
+    public void PuzzleLevelTwo()
+    {
+        SceneManager.LoadScene("PuzzleLevel2");
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }

@@ -16,6 +16,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject platArrowTwo;
     public GameObject nextLevel;
     CameraFollow cam;
+    bool epl = false;
+    public GameObject explanation;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (tutorialIndex == 0)
+        if (tutorialIndex == 0 && epl == true)
         {
             if(waitTime < 0)
             {
@@ -150,5 +152,11 @@ public class TutorialManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void Next()
+    {
+        explanation.SetActive(false);
+        epl = true;
     }
 }
