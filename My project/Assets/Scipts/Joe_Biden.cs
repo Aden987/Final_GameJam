@@ -159,8 +159,8 @@ public class Joe_Biden : MonoBehaviour
         attackTimer = 3;
         JoeAnim.SetTrigger("BitchSlap");
         JoeAnim.SetBool("Taunt", false);
-        yield return new WaitForSeconds(2);
-        TauntSound.SetActive(true) ;
+        TauntSound.SetActive(true);
+        yield return new WaitForSeconds(2);   
         isTaunting = false;  
         DamagePlayer(TauntDmg);
         Debug.Log("Taunted");
