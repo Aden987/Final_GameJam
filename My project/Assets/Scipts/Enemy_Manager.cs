@@ -77,7 +77,11 @@ public class Enemy_Manager : MonoBehaviour
 
     private void EXIT()
     {
-        Me.SetDestination(Gate.transform.position);
+        if (Biden == false)
+        {
+            Me.SetDestination(Gate.transform.position);
+        }
+     
     }
 
 
