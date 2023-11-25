@@ -8,7 +8,7 @@ public class Player_Manager : MonoBehaviour
  
     // Start is called before the first frame update
     public float AttackTmr = 0;
-    public int HP = 50;
+    public int HP = 1;
     public bool canAttack = true;
     public GameObject Ranger;
     public int SwordDamage = 10;
@@ -17,6 +17,7 @@ public class Player_Manager : MonoBehaviour
     public GameObject Skeleton;
 
     public GameObject Body;
+    public GameObject LoseText;
     
 
     
@@ -62,22 +63,21 @@ public class Player_Manager : MonoBehaviour
                 AttackTmr = 1.5f;
             }
         }
-/*
-        if (Mathf.Approximately(Body.GetComponent<Rigidbody>().velocity.y, 0))
-        {
-            PlayerAnimator.SetBool("isRunning", true);
-        }
-        else
-        {
-            PlayerAnimator.SetBool("isRunning", false);
-        }*/
+
+       
 
 
     }
 
     public void GetHit(int HitDmg)
     {
-        HP -= HitDmg;
+        Debug.Log("Taking Damage" + HitDmg);
+        HP = HP - HitDmg;
+        if (HP <= 0 )
+        {
+            Debug.Log("Less than 0");
+            GameOver();
+        }
     }
 
     public void SwordAttack()
@@ -90,6 +90,17 @@ public class Player_Manager : MonoBehaviour
     {
         Ranger.GetComponent<Can_Hit>().Attack(HeavyDamage);
         PlayerAnimator.SetTrigger("Heavy");
+    }
+
+    public void Run(bool isRunning)
+    {
+            PlayerAnimator.SetBool("isRunning", isRunning);   
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Gameover");
+        LoseText.SetActive(true);
     }
 
     

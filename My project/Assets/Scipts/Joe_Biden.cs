@@ -37,7 +37,7 @@ public class Joe_Biden : MonoBehaviour
         if (attackTimer <=0)
         {
             int r = Random.Range(0, 3);
-            switch (r)
+            switch (1)
             {
                 case 0:
                     {
@@ -82,6 +82,7 @@ public class Joe_Biden : MonoBehaviour
 
     void DamagePlayer (int Damage)
     {
+        Debug.Log("Inflicting damage" +  Damage);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Manager>().GetHit(Damage);
     }
 

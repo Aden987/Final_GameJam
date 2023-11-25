@@ -42,6 +42,11 @@ public class Player_Move : MonoBehaviour
           
 
             controller.Move(moveDirection.normalized * Speed * Time.deltaTime);
+            this.GetComponent<Player_Manager>().Run(true);
+        }
+        else
+        {
+            this.GetComponent<Player_Manager>().Run(false);
         }
 
      
